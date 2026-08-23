@@ -3,7 +3,7 @@
 <img src="assests/logo.png"
 alt="Meshery Logo" width="20%" /></picture></a><br /><br /></p>
 <p align="center">
-<img src="https://skillicons.dev/icons?i=java,spring,hibernate,postgres,docker,typescript,javascript,&perline=9" />
+<img src="https://skillicons.dev/icons?i=java,spring,hibernate,postgres,docker,typescript,javascript,github&perline=9" />
 </p>
 <p align="center">
 <h5><p align="center"><i>If you like OldMonk.ai, please <a href="https://github.com/Manabendu-ai/OldMonk.ai">★</a> this repository to show your support! 🤩</i></p></h5>
