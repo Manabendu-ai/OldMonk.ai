@@ -7,4 +7,5 @@ alt="Meshery Logo" width="20%" /></picture></a><br /><br /></p>
 <p align="center" >
 OldMonk.ai is an AI-powered GitHub repository intelligence platform that allows developers to connect their GitHub account, index their repositories, and interact with their codebase using natural language.
 <br>More comming up...
+<br> © 2026 Manabendu.ai. All rights reserved.
 </p>
