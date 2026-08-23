@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Outfit, Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
+import QueryProvider from "@/components/providers/query-provider";
 
 const notoSansHeading = Noto_Sans({subsets:['latin'],variable:'--font-heading'});
 
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
+      <QueryProvider>
       <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -39,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       >
         {children}
       </ThemeProvider>
+      </QueryProvider>
       </body>
     </html>
   );
