@@ -1,7 +1,7 @@
 
-<p style="text-align:center;" align="center"><a href="https://meshery.io"><picture>
+<p style="text-align:center;" align="center"><picture>
 <img src="assests/logo.png"
-alt="Meshery Logo" width="20%" /></picture></a><br /><br /></p>
+alt="OldMonk Logo" width="20%" /></picture><br /><br /></p>
 <p align="center">
 <img src="https://skillicons.dev/icons?i=java,spring,hibernate,postgres,docker,typescript,javascript,github&perline=9" />
 </p>
