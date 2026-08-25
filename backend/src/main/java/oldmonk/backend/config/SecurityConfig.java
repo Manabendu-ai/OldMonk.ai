@@ -19,6 +19,9 @@ import org.springframework.security.web.authentication.*;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    private final AuthenticationSuccessHandler oauth2SuccessHandler;
+    private final AuthenticationFailureHandler oauth2FailureHandler;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception{
         return http
