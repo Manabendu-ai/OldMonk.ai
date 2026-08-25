@@ -38,7 +38,25 @@ public class SecurityConfig {
                                 .anyRequest().permitAll()
                 ).exceptionHandling(ex -> ex.authenticationEntryPoint(new HttpStatusEntryPoint(
                         HttpStatus.UNAUTHORIZED
-                ))).build();
+                )))
+                .oauth2Login(
+                        oauth2 -> oauth2.userInfoEndpoint(
+                                userInfo -> userInfo
+                                        .userService(githubOAuth2Service)
+                        ).successHandler(oauth2SuccessHandler)
+                                .failureHandler(oauth2FailureHandler)
+                ).logout(
+                        lg -> lg
+                                .logoutUrl("/api/auth/logout")
+                                .logoutSuccessHandler(
+                                        ((request, response, authentication) -> {
+                                            response.setStatus(HttpStatus.NO_CONTENT.value());
+                                        })
+                                ).invalidateHttpSession(true)
+                                .clearAuthentication(true)
+                                .deleteCookies("OldMonk_SESSION")
+                )
+                .build();
 
     }
 }
