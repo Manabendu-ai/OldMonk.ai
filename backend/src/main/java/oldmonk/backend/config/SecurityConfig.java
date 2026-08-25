@@ -2,6 +2,7 @@ package oldmonk.backend.config;
 
 import com.google.api.client.http.HttpMethods;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -58,5 +61,14 @@ public class SecurityConfig {
                 )
                 .build();
 
+    }
+
+    @Bean
+    AuthenticationSuccessHandler oauth2SuccessHandler(
+            @Value("${app.frontend-url}") String frontendUrl
+    ){
+        SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
+        handler.setDefaultTargetUrl(frontendUrl+"/auth/callback");
+        return handler;
     }
 }
