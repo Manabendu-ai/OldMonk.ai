@@ -7,6 +7,7 @@ import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -30,6 +31,28 @@ public class UserService {
             return number.longValue();
         }
         return Long.parseLong(String.valueOf(value));
+    }
+
+    public User upsertFromGithub(Map<String, Object> attributes, String accessToken, String scopes) {
+        Long githubId = toLong(attributes.get("id"));
+        String login = String.valueOf(attributes.get("login"));
+        String name = attributes.get("home") != null
+                ? String.valueOf(attributes.get("name"))
+                : login;
+        String avatarUrl = attributes.get("avatar_url") != null
+                ? String.valueOf(attributes.get("avatar_url"))
+                : null;
+
+        String encryptedToken = tokenEncryptor.encrypt(accessToken);
+
+        User user = User.builder()
+                .githubId(githubId)
+                .username(login)
+                .displayName(name)
+                .avatarUrl(avatarUrl)
+                .accessToken(encryptedToken)
+                .tokenScopes(scopes).build();
+        return repo.save(user);
     }
 }
 
