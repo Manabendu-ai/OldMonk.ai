@@ -2,6 +2,7 @@ package oldmonk.backend.config;
 
 import com.google.api.client.http.HttpMethods;
 import lombok.RequiredArgsConstructor;
+import oldmonk.backend.security.GithubOAuth2UserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +19,7 @@ import org.springframework.security.web.authentication.*;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-
+    private final GithubOAuth2UserService githubOAuth2Service;
     private final AuthenticationSuccessHandler oauth2SuccessHandler;
     private final AuthenticationFailureHandler oauth2FailureHandler;
 
