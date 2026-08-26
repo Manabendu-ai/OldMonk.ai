@@ -1,6 +1,7 @@
 package oldmonk.backend.controller;
 
 import lombok.RequiredArgsConstructor;
+import oldmonk.backend.dto.UserResponse;
 import oldmonk.backend.entity.User;
 import oldmonk.backend.security.AppUserPrincipal;
 import oldmonk.backend.security.CurrentUser;
@@ -27,13 +28,13 @@ public class AuthController {
         AppUserPrincipal principal = currentUser.require();
         User user = principal.getUser();
         return ResponseEntity.ok(
-                new UserResponse().builder()
-                        .userId(user.getId())
-                        .githubId(user.getGithubId())
+                UserResponse.builder()
+                        .id(Long.valueOf(String.valueOf(user.getId())))
+                        .githubId(String.valueOf(user.getGithubId()))
                         .username(user.getUsername())
                         .displayName(user.getDisplayName())
                         .avatarUrl(user.getAvatarUrl())
-
+                        .build()
         );
     }
 }
